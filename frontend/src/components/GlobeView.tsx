@@ -137,24 +137,24 @@ export default function GlobeView({ flight }: Props) {
         atmosphereColor="lightblue"
         atmosphereAltitude={0.15}
         arcsData={arcsData}
-        arcStartLat={(d) => (d as ArcDatum).startLat}
-        arcStartLng={(d) => (d as ArcDatum).startLng}
-        arcEndLat={(d) => (d as ArcDatum).endLat}
-        arcEndLng={(d) => (d as ArcDatum).endLng}
-        arcColor={(d) => (d as ArcDatum).color}
-        arcDashGap={(d) => (d as ArcDatum).dashGap}
-        arcDashLength={(d) => (d as ArcDatum).dashLength}
-        arcStroke={(d) => (d as ArcDatum).stroke}
+        arcStartLat={(d: ArcDatum) => d.startLat}
+        arcStartLng={(d: ArcDatum) => d.startLng}
+        arcEndLat={(d: ArcDatum) => d.endLat}
+        arcEndLng={(d: ArcDatum) => d.endLng}
+        arcColor={(d: ArcDatum) => d.color}
+        arcDashGap={(d: ArcDatum) => d.dashGap}
+        arcDashLength={(d: ArcDatum) => d.dashLength}
+        arcStroke={(d: ArcDatum) => d.stroke}
         pointsData={pointsData}
-        pointLat={(d) => (d as PointDatum).lat}
-        pointLng={(d) => (d as PointDatum).lng}
-        pointColor={(d) => (d as PointDatum).color}
-        pointRadius={(d) => (d as PointDatum).size}
+        pointLat={(d: PointDatum) => d.lat}
+        pointLng={(d: PointDatum) => d.lng}
+        pointColor={(d: PointDatum) => d.color}
+        pointRadius={(d: PointDatum) => d.size}
         pointAltitude={0.01}
         labelsData={pointsData}
-        labelLat={(d) => (d as PointDatum).lat}
-        labelLng={(d) => (d as PointDatum).lng}
-        labelText={(d) => (d as PointDatum).label}
+        labelLat={(d: PointDatum) => d.lat}
+        labelLng={(d: PointDatum) => d.lng}
+        labelText={(d: PointDatum) => d.label}
         labelSize={1.2}
         labelColor={() => 'rgba(0, 0, 0, 0.8)'}
         labelDotRadius={0}
