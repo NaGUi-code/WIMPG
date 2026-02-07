@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&display=swap");
+@import "leaflet/dist/leaflet.css";
+@import "tailwindcss";
+
+@theme {
+  --color-sand-50: #faf9f7;
+  --color-sand-100: #f3f1ed;
+  --color-sand-200: #e8e4dd;
+  --color-sand-300: #d4cfc5;
+  --color-sand-400: #a8a194;
+  --color-sand-500: #7c756a;
+  --color-sand-600: #5c564d;
+  --color-sand-700: #3d3933;
+  --color-ink: #1a1714;
+  --color-route-done: #2563eb;
+  --color-route-left: #cbd5e1;
+  --color-dep: #059669;
+  --color-arr: #dc2626;
+  --color-plane: #2563eb;
+  --font-display: "Sora", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: var(--color-sand-50);
+  font-family: var(--font-display);
+  color: var(--color-ink);
+}
+
+/* Leaflet light overrides */
+.leaflet-container {
+  background: var(--color-sand-100) !important;
+  font-family: var(--font-display) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(250, 249, 247, 0.85) !important;
+  color: var(--color-sand-400) !important;
+  font-size: 9px !important;
+  font-family: var(--font-mono) !important;
+}
+
+.leaflet-control-zoom a {
+  background: white !important;
+  color: var(--color-sand-600) !important;
+  border-color: var(--color-sand-200) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--color-sand-50) !important;
+  color: var(--color-ink) !important;
+}
+
+/* Plane pulse — blue on light */
+@keyframes plane-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+}
+
+.plane-marker-ring {
+  animation: plane-pulse 2s ease-in-out infinite;
+}
+
+/* Subtle animated dash for the remaining route on the map */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+/* Progress bar shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.progress-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(37, 99, 235, 0.08) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Entry animation */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.35s ease-out both;
+}
+
+/* Live dot */
+@keyframes blink-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.live-dot {
+  animation: blink-dot 1.5s ease-in-out infinite;
+}
+
+/* Progress label on map */
+.progress-label {
+  background: white;
+  border: 1px solid var(--color-sand-200);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-route-done);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+}
+
+/* Landing page animations */
+@keyframes landing-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes arc-draw {
+  0% {
+    stroke-dashoffset: var(--arc-length);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.2;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-landing-fade-in {
+  animation: landing-fade-in 0.6s ease-out both;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

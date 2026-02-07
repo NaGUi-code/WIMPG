@@ -1,0 +1,9 @@
+{
+  "name": "John F. Kennedy International Airport",
+  "iata_code": "JFK",
+  "icao_code": "KJFK",
+  "lat": 40.63983,
+  "lng": -73.77874,
+  "city": "New York",
+  "country_code": "US"
+}

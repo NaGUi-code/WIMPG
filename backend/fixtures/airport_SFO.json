@@ -1,0 +1,9 @@
+{
+  "name": "San Francisco International Airport",
+  "iata_code": "SFO",
+  "icao_code": "KSFO",
+  "lat": 37.61882,
+  "lng": -122.3758,
+  "city": "San Francisco",
+  "country_code": "US"
+}
