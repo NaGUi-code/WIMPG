@@ -1,8 +1,8 @@
-import { useEffect, useRef, useCallback, useMemo } from 'react';
-import Globe from 'react-globe.gl';
-import type { GlobeMethods } from 'react-globe.gl';
-import type { FlightData } from '../types/flight';
-import { greatCirclePath, closestPointIndex } from '../utils/geo';
+import { useEffect, useRef, useCallback, useMemo } from "react";
+import Globe from "react-globe.gl";
+import type { GlobeMethods } from "react-globe.gl";
+import type { FlightData } from "../types/flight";
+import { greatCirclePath, closestPointIndex } from "../utils/geo";
 
 interface Props {
   flight: FlightData;
@@ -38,7 +38,8 @@ export default function GlobeView({ flight }: Props) {
   const arrLng = flight.arr_airport?.lng;
   const planeLat = flight.lat;
   const planeLng = flight.lng;
-  const hasRoute = depLat != null && depLng != null && arrLat != null && arrLng != null;
+  const hasRoute =
+    depLat != null && depLng != null && arrLat != null && arrLng != null;
   const hasPlane = planeLat != null && planeLng != null;
 
   const arcsData = useMemo<ArcDatum[]>(() => {
@@ -53,7 +54,7 @@ export default function GlobeView({ flight }: Props) {
           startLng: depLng!,
           endLat: midPoint[0],
           endLng: midPoint[1],
-          color: 'rgba(59, 130, 246, 0.9)',
+          color: "rgba(59, 130, 246, 0.9)",
           dashGap: 0,
           dashLength: 1,
           stroke: 1.5,
@@ -63,7 +64,7 @@ export default function GlobeView({ flight }: Props) {
           startLng: midPoint[1],
           endLat: arrLat!,
           endLng: arrLng!,
-          color: 'rgba(147, 197, 253, 0.8)',
+          color: "rgba(147, 197, 253, 0.8)",
           dashGap: 0.5,
           dashLength: 0.5,
           stroke: 1.2,
@@ -76,7 +77,7 @@ export default function GlobeView({ flight }: Props) {
         startLng: depLng!,
         endLat: arrLat!,
         endLng: arrLng!,
-        color: 'rgba(147, 197, 253, 0.8)',
+        color: "rgba(147, 197, 253, 0.8)",
         dashGap: 0.5,
         dashLength: 0.5,
         stroke: 1.2,
@@ -87,24 +88,62 @@ export default function GlobeView({ flight }: Props) {
   const pointsData = useMemo<PointDatum[]>(() => {
     const pts: PointDatum[] = [];
     if (depLat != null && depLng != null) {
-      pts.push({ lat: depLat, lng: depLng, color: '#22c55e', size: 0.5, label: flight.dep_airport?.iata ?? '' });
+      pts.push({
+        lat: depLat,
+        lng: depLng,
+        color: "#22c55e",
+        size: 0.5,
+        label: flight.dep_airport?.iata ?? "",
+      });
     }
     if (arrLat != null && arrLng != null) {
-      pts.push({ lat: arrLat, lng: arrLng, color: '#ef4444', size: 0.5, label: flight.arr_airport?.iata ?? '' });
+      pts.push({
+        lat: arrLat,
+        lng: arrLng,
+        color: "#ef4444",
+        size: 0.5,
+        label: flight.arr_airport?.iata ?? "",
+      });
     }
     if (hasPlane) {
-      pts.push({ lat: planeLat!, lng: planeLng!, color: '#f59e0b', size: 0.7, label: '✈' });
+      pts.push({
+        lat: planeLat!,
+        lng: planeLng!,
+        color: "#f59e0b",
+        size: 0.7,
+        label: "✈",
+      });
     }
     return pts;
-  }, [depLat, depLng, arrLat, arrLng, planeLat, planeLng, flight.dep_airport?.iata, flight.arr_airport?.iata, hasPlane]);
+  }, [
+    depLat,
+    depLng,
+    arrLat,
+    arrLng,
+    planeLat,
+    planeLng,
+    flight.dep_airport?.iata,
+    flight.arr_airport?.iata,
+    hasPlane,
+  ]);
 
   // Auto-rotate to plane or route center
   useEffect(() => {
     if (!globeRef.current) return;
     if (hasPlane) {
-      globeRef.current.pointOfView({ lat: planeLat!, lng: planeLng!, altitude: 2.2 }, 1000);
+      globeRef.current.pointOfView(
+        { lat: planeLat!, lng: planeLng!, altitude: 2.2 },
+        1000,
+      );
     } else if (hasRoute) {
-      globeRef.current.pointOfView({ lat: (depLat! + arrLat!) / 2, lng: (depLng! + arrLng!) / 2, altitude: 2.5 }, 1000);
+      globeRef.current.pointOfView(
+        {
+          lat: (depLat! + arrLat!) / 2,
+          lng: (depLng! + arrLng!) / 2,
+          altitude: 2.5,
+        },
+        1000,
+      );
     }
   }, [planeLat, planeLng, depLat, depLng, arrLat, arrLng, hasPlane, hasRoute]);
 
@@ -156,7 +195,7 @@ export default function GlobeView({ flight }: Props) {
         labelLng={(d: PointDatum) => d.lng}
         labelText={(d: PointDatum) => d.label}
         labelSize={1.2}
-        labelColor={() => 'rgba(0, 0, 0, 0.8)'}
+        labelColor={() => "rgba(0, 0, 0, 0.8)"}
         labelDotRadius={0}
         labelAltitude={0.02}
       />
