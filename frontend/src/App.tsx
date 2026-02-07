@@ -40,8 +40,11 @@ export default function App() {
     if (error && error !== prevError.current) {
       prevError.current = error;
       toast((error as Error).message || "Flight not found", "error");
-      setFlightId(null);
-      setResetKey((k) => k + 1);
+      // Defer state updates to avoid cascading renders
+      setTimeout(() => {
+        setFlightId(null);
+        setResetKey((k) => k + 1);
+      }, 0);
     }
     if (!error) {
       prevError.current = null;
@@ -85,7 +88,13 @@ export default function App() {
         className={`shrink-0 z-20 ${isLanding ? "absolute top-0 left-0 right-0 bg-transparent" : "bg-white border-b border-sand-200"}`}
       >
         <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
+          <button
+            onClick={() => {
+              setFlightId(null);
+              setResetKey((k) => k + 1);
+            }}
+            className="flex items-center gap-2.5 transition-opacity hover:opacity-70 cursor-pointer active:opacity-50"
+          >
             <svg
               width="20"
               height="20"
@@ -101,7 +110,7 @@ export default function App() {
             <span className="text-[10px] text-sand-400 font-mono hidden sm:inline ml-1">
               Where Is My Plane Going
             </span>
-          </div>
+          </button>
           {!isLanding && (
             <SearchBar
               onSearch={setFlightId}

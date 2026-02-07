@@ -41,24 +41,28 @@ export default function LandingPage({ onSearch, isLoading, resetKey }: Props) {
           doubleClickZoom={false}
           attributionControl={false}
           className="h-full w-full"
+          zoomSnap={0}
         >
-          <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
+          <TileLayer
+            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
+            attribution=""
+          />
         </MapContainer>
       </div>
 
       {/* Layer 2: Gradient Veil */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-sand-50/80 via-sand-50/40 to-sand-50/70" />
 
-      {/* Layer 3: Animated SVG Arcs */}
+      {/* Layer 3: Animated SVG Arcs - Real Airport Routes */}
       <svg
         className="absolute inset-0 z-20 w-full h-full pointer-events-none"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >
-        {/* Arc 1: Blue route-done color */}
+        {/* Arc 1: JFK to LHR (Transatlantic) - Blue */}
         <path
           ref={arc1Ref}
-          d="M 10 80 Q 30 20, 50 50"
+          d="M 29.5 24.2 Q 39.7 7, 49.9 10.7"
           fill="none"
           stroke="#2563eb"
           strokeWidth="0.15"
@@ -70,10 +74,10 @@ export default function LandingPage({ onSearch, isLoading, resetKey }: Props) {
             animationDelay: "1s",
           }}
         />
-        {/* Arc 2: Green departure color */}
+        {/* Arc 2: DXB to HKG (Middle East to Asia) - Green */}
         <path
           ref={arc2Ref}
-          d="M 90 70 Q 70 30, 50 50"
+          d="M 65.4 43.4 Q 73.5 35, 81.6 47.1"
           fill="none"
           stroke="#059669"
           strokeWidth="0.12"
@@ -85,10 +89,10 @@ export default function LandingPage({ onSearch, isLoading, resetKey }: Props) {
             animationDelay: "2.5s",
           }}
         />
-        {/* Arc 3: Red arrival color */}
+        {/* Arc 3: LAX to NRT (Transpacific) - Red */}
         <path
           ref={arc3Ref}
-          d="M 50 90 Q 70 50, 80 20"
+          d="M 17.1 32.6 Q 53.1 15, 89.0 30.3"
           fill="none"
           stroke="#dc2626"
           strokeWidth="0.18"
@@ -132,7 +136,18 @@ export default function LandingPage({ onSearch, isLoading, resetKey }: Props) {
             style={{ animationDelay: "250ms" }}
           >
             <h1 className="text-4xl sm:text-5xl font-bold text-ink tracking-tight">
-              Where Is My Plane Going
+              Where Is My Plane Going to{" "}
+              <span className="text-rotate">
+                <span>
+                  <span>JFK</span>
+                  <span>LAX</span>
+                  <span>LHR</span>
+                  <span>NRT</span>
+                  <span>CDG</span>
+                  <span>DXB</span>
+                </span>
+              </span>
+              ?
             </h1>
           </div>
 
