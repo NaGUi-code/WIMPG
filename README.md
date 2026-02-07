@@ -2,7 +2,7 @@
 
 A beautiful, real-time flight tracking application built with React and FastAPI. Track any commercial flight worldwide with live position updates, animated routes, and an elegant landing page.
 
-![WIMPG Screenshot](https://via.placeholder.com/800x400?text=WIMPG+Flight+Tracker)
+![WIMPG Screenshot](https://wimpg.git-claude.com/og-banner.png)
 
 ## ✨ Features
 
