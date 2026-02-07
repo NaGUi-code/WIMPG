@@ -36,7 +36,6 @@ logs/
 # Docker
 Dockerfile
 .dockerignore
-nginx.conf
 
 # Git
 .git/

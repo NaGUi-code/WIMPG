@@ -59,10 +59,10 @@ export default function LandingPage({ onSearch, isLoading, resetKey }: Props) {
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >
-        {/* Arc 1: JFK to LHR (Transatlantic) - Blue */}
+        {/* Arc 1: CDG to LAX (Paris to Los Angeles) - Blue */}
         <path
           ref={arc1Ref}
-          d="M 29.5 24.2 Q 39.7 7, 49.9 10.7"
+          d="M 50.7 22.8 Q 34 16, 17.1 31.1"
           fill="none"
           stroke="#2563eb"
           strokeWidth="0.15"
@@ -74,10 +74,10 @@ export default function LandingPage({ onSearch, isLoading, resetKey }: Props) {
             animationDelay: "1s",
           }}
         />
-        {/* Arc 2: DXB to HKG (Middle East to Asia) - Green */}
+        {/* Arc 2: JNB to SIN (Johannesburg to Singapore) - Green */}
         <path
           ref={arc2Ref}
-          d="M 65.4 43.4 Q 73.5 35, 81.6 47.1"
+          d="M 57.9 64.5 Q 68.4 54, 78.9 49.2"
           fill="none"
           stroke="#059669"
           strokeWidth="0.12"
@@ -89,10 +89,10 @@ export default function LandingPage({ onSearch, isLoading, resetKey }: Props) {
             animationDelay: "2.5s",
           }}
         />
-        {/* Arc 3: LAX to NRT (Transpacific) - Red */}
+        {/* Arc 3: JFK to LHR (New York to London) - Red */}
         <path
           ref={arc3Ref}
-          d="M 17.1 32.6 Q 53.1 15, 89.0 30.3"
+          d="M 29.5 27.4 Q 39.7 14, 49.9 21.4"
           fill="none"
           stroke="#dc2626"
           strokeWidth="0.18"

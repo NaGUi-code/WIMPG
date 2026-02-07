@@ -56,8 +56,8 @@ tunnel: YOUR_TUNNEL_ID
 credentials-file: /root/.cloudflared/YOUR_TUNNEL_ID.json
 
 ingress:
-  - hostname: yourdomain.com
-    service: http://localhost:80
+  - hostname: wimpg.git-claude.com
+    service: http://localhost:4000
   - service: http_status:404
 ```
 
@@ -78,7 +78,7 @@ docker compose ps
 ./logs.sh
 
 # Test locally
-curl http://localhost:80/health
+curl http://localhost:4000/health
 curl http://localhost:8000/api/health
 ```
 
@@ -127,7 +127,7 @@ WIMPG/
 
 ```bash
 docker compose logs
-sudo netstat -tulpn | grep -E ':(80|8000)'
+sudo netstat -tulpn | grep -E ':(4000|8000)'
 ```
 
 **Can't access from internet:**
@@ -141,7 +141,7 @@ sudo journalctl -u cloudflared -f
 
 ```bash
 curl http://localhost:8000/api/health
-curl http://localhost:80/health
+curl http://localhost:4000/health
 docker inspect wimpg-backend | grep -A 10 Health
 ```
 
@@ -151,6 +151,15 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed documentation.
 
 ## Ports
 
-- Frontend: `http://localhost:80`
+- Frontend: `http://localhost:4000`
 - Backend API: `http://localhost:8000`
-- Cloudflare Tunnel: Proxies to localhost (no open ports)
+- Cloudflare Tunnel: Points to `localhost:4000`
+
+## Cloudflare Tunnel Setup
+
+In the Cloudflare Dashboard, configure the route:
+- **Public Hostname**: `wimpg.git-claude.com`
+- **Service Type**: `HTTP`
+- **URL**: `localhost:4000`
+
+See [CLOUDFLARE_TUNNEL.md](./CLOUDFLARE_TUNNEL.md) for detailed setup.

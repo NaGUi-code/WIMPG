@@ -100,8 +100,11 @@ print_info "Recent logs:"
 docker compose logs --tail=50
 
 print_info "Deployment complete!"
-print_info "Frontend is running on http://localhost:80"
+print_info "Frontend is running on http://localhost:4000"
 print_info "Backend API is running on http://localhost:8000"
+print_info ""
+print_info "Cloudflare Tunnel Configuration:"
+print_info "  Point wimpg.git-claude.com to localhost:4000"
 print_info ""
 print_info "Useful commands:"
 print_info "  View logs: docker compose logs -f"
